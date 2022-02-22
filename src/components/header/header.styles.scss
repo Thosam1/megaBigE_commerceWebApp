@@ -1,0 +1,25 @@
+.header {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; // for children within
+  margin-bottom: 25px;
+
+  .logo-container {
+    height: 100%;
+    width: 70px;
+    padding: 25px;
+  }
+
+  .options {
+    width: 50%; // of full header 
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; // to be on the most right side of the header
+
+    .option {
+      padding: 10px 15px;
+    }
+  }
+}
