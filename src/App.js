@@ -36,6 +36,7 @@ class App extends React.Component {
               ...snapShot.data()
             }
           });
+          // console.log(this.state) ; // debugging
         });  
       }
       // if userAuth object is null
