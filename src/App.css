@@ -7,3 +7,7 @@ a { /* for links - to not have underlined decoration */
     text-decoration: none;
     color: black;
 }
+
+* { /* padding, border do not affect elt size */
+    box-sizing: border-box;
+}
