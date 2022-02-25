@@ -8,7 +8,8 @@ import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 
 import Header from './components/header/header.component';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 
 class App extends React.Component {
 
@@ -22,8 +23,23 @@ class App extends React.Component {
 
   unsubscribeFromAuth = null; // so we don't have memory leaks when app is closed
   componentDidMount(){
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user }) // so we know when a user has logged in or a data has changed
+    this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
+      // this.setState({ currentUser: user }) // so we know when a user has logged in or a data has changed
+    
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+        });  
+      }
+      // if userAuth object is null
+      this.setState({currentUser: userAuth}); // if user logs out
     })
   }
   componentWillUnmount(){

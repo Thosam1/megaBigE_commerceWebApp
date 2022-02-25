@@ -12,7 +12,37 @@ const config = {
     measurementId: "G-F782WMP32V"
   };
 
-firebase.initializeApp(config); // now we initialize firebase with given config
+  firebase.initializeApp(config); // now we initialize firebase with given config
+
+  // ---
+  export const createUserProfileDocument = async (userAuth, additionalData) => {
+    if(!userAuth) return; // means hasn't connected
+
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
+    const snapShot = await userRef.get(); // snapshot represents the data
+
+    // if user doesn't exist, we create new user with data from userAuth object
+    if(!snapShot.exists) { 
+      const { displayName, email } = userAuth;
+      const createdAt = new Date();
+
+      // creating the snapShot
+      try {
+        await userRef.set({
+          displayName,
+          email,
+          createdAt,
+          ...additionalData // we might want more, passed as an object
+        });
+      } catch (error) {
+        console.log('error creating user', error.message)
+      }
+
+    } 
+    return userRef; // to do more things if needed
+  }
+  // ---
+
 
 export const auth = firebase.auth(); // to use it anywhere needed for authentification
 export const firestore = firebase.firestore();
