@@ -15,10 +15,21 @@
     height: 240px;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto; // scroll;
   }
 
   button {
     margin-top: auto; // so button is always at the bottom
+  }
+
+  // for scrollbar 
+  ::-webkit-scrollbar{
+    width: 4px;
+    background-color: transparent;
+  }
+ 
+  ::-webkit-scrollbar-thumb{
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 20px;
   }
 }
