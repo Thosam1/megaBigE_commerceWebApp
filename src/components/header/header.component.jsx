@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { auth } from '../../firebase/firebase.utils';
 
+import CartIcon from '../cart-icon/cart-icon.component';
+
 import { ReactComponent as Logo } from '../../assets/crown.svg'; // speci
 
 import './header.styles.scss';
@@ -28,6 +30,8 @@ const Header = ( {currentUser} ) => ( // deconstructing the user we're passing f
                 :
                 <Link className='option' to='/signin'> SIGN IN </Link> // if currently signed out
             } 
+
+            <CartIcon />
 
         </div>
     </div>
