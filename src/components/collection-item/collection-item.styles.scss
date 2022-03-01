@@ -4,6 +4,7 @@
   flex-direction: column;
   height: 350px;
   align-items: center;
+  position: relative; // for buttons to be inside !!
 
   .image {
     width: 100%;
@@ -11,6 +12,27 @@
     background-size: cover;
     background-position: center;
     margin-bottom: 5px;
+  }
+
+  // for custom-button 
+  .custom-button {
+    width: 80%;
+    opacity: 0.7;
+    position: absolute;
+    top: 255px;
+
+    display: none; // to only activate on hover effect
+  }
+
+  &:hover {
+    .image {
+      opacity: 0.7;      
+    }
+
+    .custom-button {
+      opacity: 0.85;
+      display: flex;
+    }
   }
 
   .collection-footer {
