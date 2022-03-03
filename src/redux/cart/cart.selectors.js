@@ -1,7 +1,7 @@
 // for memoization
 import {createSelector} from 'reselect';
 
-const selectCart = state => state.cart;
+const selectCart = state => state.cart; // pulling off the state
 
 export const selectCartItems = createSelector(
     [selectCart],
@@ -21,4 +21,12 @@ export const selectCartItemsCount = createSelector(
                 accumulatedQuantity + cartItem.quantity, 0)
 );
 
+// one to add all prices for checkout
+export const selectCartTotal = createSelector(
+    [selectCartItems],
+    cartItems => 
+        cartItems.reduce(
+            (accumulatedQuantity, cartItem) =>
+                accumulatedQuantity + cartItem.quantity * cartItem.price, 0)
+)
 
