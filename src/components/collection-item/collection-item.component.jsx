@@ -32,7 +32,7 @@ const CollectionItem = ({item, addItem}) =>{
 }
 const mapDispatchToProps = dispatch => ({
     addItem: item => dispatch(addItem(item)) // so sent to "conts CollectionItem" as prop
-}) 
+});
 
 export default connect( // so event can be fired
     null,
