@@ -1,33 +1,17 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
-import SHOP_DATA from './shop.data.js'; // in a separate file by default
+import CollectionsOverview from '../../components/collections-overview/collections-overview.component';
+import CategoryPage from '../category/category.component';
 
-import CollectionPreview from '../../components/collection-preview/collection-preview.component';
+const ShopPage = ({ match }) => {
+    return (<div className='shop-page'>
+        <Route exact path={`${match.path}`}component={CollectionsOverview} />
+        <Route path={`${match.path}/:categoryId`} component={CategoryPage} />
+    </div>);
+}
 
-class ShopPage extends React.Component {
-    constructor(props) {
-        super(props); // why the hell do we need props ? homepage doesn't have a state !!!
-    
-            this.state = {                
-
-                collections: SHOP_DATA,
-
-        } // end state
-    } // end constructor
-
-    render() {
-
-        const {collections} = this.state; // destructuring the collection 
-        
-        return (<div className='shop-page'>
-            {
-                collections.map(({ id, ...otherCollectionProps }) => (
-                    <CollectionPreview key={id} {...otherCollectionProps} />
-                ))
-            }
-        </div>);
-    }
-} // end class
+       
   
   export default ShopPage;
   
