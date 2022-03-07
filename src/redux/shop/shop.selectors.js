@@ -18,6 +18,6 @@ export const selectCollectionsForPreview = createSelector(
 export const selectCollection = memoize((collectionUrlParam) =>
     createSelector(
         [selectCollections],
-        collections => Object.keys(collections).map(key => collections[key])
+        collections => collections[collectionUrlParam]
     )
 ); // memoize avoid reruning if function was already ran with same parameters
