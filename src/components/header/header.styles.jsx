@@ -1,12 +1,5 @@
-import styled, { css } from 'styled-components';
-import {Link} from 'react-router-dom';
-
-
-// css is when we need a code more than once -> We can include them directly ${OptionContainerStyles}
-const OptionContainerStyles = css`
-    padding: 10px 15px;
-    cursor: pointer;
-`
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const HeaderContainer = styled.div`
   height: 70px;
@@ -30,12 +23,11 @@ export const OptionsContainer = styled.div`
     justify-content: flex-end; // to be on the most right side of the header
 `
 
-export const OptionLink = styled(Link).div`
-    ${OptionContainerStyles}
+export const OptionLink = styled(Link)`
+    padding: 10px 15px;
+    cursor: pointer;
 `
 
-export const OptionDiv = styled.div`
-    ${OptionContainerStyles}
-`
+
 
 
